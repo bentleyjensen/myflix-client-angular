@@ -5,14 +5,14 @@ import { Observable, throwError } from 'rxjs';
 
 // Url providing data for the app
 // Url should end in slash
-const apiURL = 'YOUR_HOSTED_API_URL_HERE/';
+const apiURL = 'http://localhost:8000/';
 
 // Importable under root scope
 @Injectable({
   providedIn: 'root'
 })
 
-export class UserRegistrationService {
+export class FetchApiDataService {
   // http client available to whole class
   constructor(private http: HttpClient) {
 
@@ -20,6 +20,9 @@ export class UserRegistrationService {
 
   // Register a new user
   public userRegistration(userDetails: any): Observable<any> {
+    const dateRegex = /^(19|20)\d\d\-(1[012]|0[1-9])\-(30|31|0[1-9]|[12]\d)$/;
+    console.log('birthdate matches: ', userDetails.birthdate.match(dateRegex));
+
     console.log('register user: ', userDetails);
     // Non-auth POST request
     return this.http.post(apiURL + 'user/register', userDetails)
@@ -145,19 +148,22 @@ export class UserRegistrationService {
     // Token defaults to empty string
     const token = localStorage.getItem('token') || '';
 
-    // Set auth headers if we have a token
-    let headers = new HttpHeaders();
-    if (token) {
-      headers = new HttpHeaders({
-        Authorization: 'Bearer ' + token,
-      });
+    const headerObj = {
+      'Access-Control-Allow-Origin': '*',
+      'Authorization': '',
     }
 
-    return headers;
+    // Set auth headers if we have a token
+    if (token) {
+      headerObj.Authorization = 'Bearer ' + token;
+    }
+
+    return new HttpHeaders(headerObj);
   }
 
   // Untyped response data extraction
-  private extractResponseData(res: Response): any {
+  private extractResponseData(res: Object): any {
+  // private extractResponseData(res: Response): any {
     const body = res;
     return body || {};
   }
@@ -171,7 +177,7 @@ export class UserRegistrationService {
       // not nested error
       console.error(
         `Error Status code ${error.status}\n` +
-        `Error body is: ${error.error}`);
+        `Error body is: `, error.error.errors);
     }
 
     return throwError(() => new Error('Error in Fetch API data service'))

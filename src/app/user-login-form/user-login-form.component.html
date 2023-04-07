@@ -1,0 +1,24 @@
+<mat-card>
+    <mat-card-header style="margin: auto;">
+        <mat-card-title style="text-align: center;margin-bottom: 10px;">User Login</mat-card-title>
+    </mat-card-header>
+    <mat-card-content style="margin: auto;">
+        <form style="margin: auto;text-align: center;">
+            <mat-form-field>
+                <input matInput [(ngModel)]="loginData.username" placeholder="Username" type="text" name="username"
+                    required>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput [(ngModel)]="loginData.password" type="password" placeholder="Password" name="password"
+                    required>
+            </mat-form-field>
+        </form>
+    </mat-card-content>
+    <mat-card-actions style="margin-left: auto;">
+        <div style="width: auto;"></div>
+        <button mat-raised-button (click)="loginUser()" color="primary"
+            style="text-align: right;margin-right: auto;">
+            Log In
+        </button>
+    </mat-card-actions>
+</mat-card>
