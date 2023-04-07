@@ -21,9 +21,7 @@ export class FetchApiDataService {
   // Register a new user
   public userRegistration(userDetails: any): Observable<any> {
     const dateRegex = /^(19|20)\d\d\-(1[012]|0[1-9])\-(30|31|0[1-9]|[12]\d)$/;
-    console.log('birthdate matches: ', userDetails.birthdate.match(dateRegex));
 
-    console.log('register user: ', userDetails);
     // Non-auth POST request
     return this.http.post(apiURL + 'user/register', userDetails)
       .pipe(catchError(this.handleError));
@@ -31,7 +29,6 @@ export class FetchApiDataService {
 
   // Login an existing user
   public userLogin(userDetails: any): Observable<any> {
-    console.log('user Login: ', userDetails);
     // Non-auth POST request
     return this.http.post(apiURL + 'login', userDetails)
       .pipe(catchError(this.handleError));
@@ -170,16 +167,22 @@ export class FetchApiDataService {
 
   // General Error Handler
   private handleError(error: HttpErrorResponse): any {
-    // Check for nested error
-    if (error.error instanceof ErrorEvent) {
-      console.error('Error: ', error.error.message); 
-    } else {
-      // not nested error
-      console.error(
-        `Error Status code ${error.status}\n` +
-        `Error body is: `, error.error.errors);
+    // There are (unfortunately) several different error objects passed,
+    // and we have to locate the message differently for each.
+    let errorMsg: string;
+
+    if (error.error) {
+      if (error.error.info?.message) {
+        errorMsg = error.error.info.message;
+
+      } else if (typeof error.error == 'string') {
+        errorMsg = error.error;
+
+      } else if (Array.isArray(error.error.errors)) {
+        errorMsg = error.error.errors[0].msg
+      }
     }
 
-    return throwError(() => new Error('Error in Fetch API data service'))
+    return throwError(() => new Error(errorMsg ));
   }
 }
