@@ -97,6 +97,13 @@ export class FetchApiDataService {
     return this.httpGet(`movies/genre/${genre}`);
   }
 
+  // get an image
+  public getImageLink(imageName: string) {
+    console.log('get Image: ', imageName);
+    // return this.httpGet(`images/${imageName}`);
+    return `${apiURL}images/${imageName}.jpg`
+  }
+
   // Generic get request without auth
   // returns response data
   private httpGet(endpoint: string): any {

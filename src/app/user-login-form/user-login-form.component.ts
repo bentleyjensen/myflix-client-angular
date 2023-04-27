@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { MatDialogRef } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { FetchApiDataService } from "../fetch-api-data.service";
@@ -16,6 +17,7 @@ export class UserLoginFormComponent implements OnInit {
   }
 
   constructor (
+    public router: Router,
     public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<UserLoginFormComponent>,
     public snackBar: MatSnackBar,
@@ -32,6 +34,7 @@ export class UserLoginFormComponent implements OnInit {
       this.snackBar.open(result, 'OK', {
         duration: 5000
       });
+      this.router.navigate(['movies']);
     }, (result) => {
       this.snackBar.open(result, 'OK', {
         duration: 5000
