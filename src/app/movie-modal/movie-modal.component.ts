@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from "@angular/material/dialog";
 
 import { FetchApiDataService } from "../fetch-api-data.service";
 
@@ -8,15 +9,31 @@ import { FetchApiDataService } from "../fetch-api-data.service";
   styleUrls: ['./movie-modal.component.scss']
 })
 export class MovieModalComponent {
-  @Input() movieTitle: string = '';
   public movie: any = {};
 
-  constructor(public fetchApiDataService: FetchApiDataService) {
+  constructor(
+    public fetchApiDataService: FetchApiDataService,
+    @Inject(MAT_DIALOG_DATA)
+    public data: {
+      _id: string;
+      title: string;
+      description: string;
+      director: {
+        name: string;
+
+      };
+      year: number;
+      genre: {
+        name: string;
+        description: string;
+      };
+    }
+  ) {
 
   }
 
   ngOnInit(): void {
-    this.getMovie(this.movieTitle);
+    this.getMovie(this.data.title);
   }
 
   public getMovie(movieTitle: string): void {
@@ -28,7 +45,7 @@ export class MovieModalComponent {
   }
 
   public getImageLink(): string {
-    return this.fetchApiDataService.getImageLink(this.movie._id);
+    return this.fetchApiDataService.getImageLink(this.data._id);
   }
 
 }

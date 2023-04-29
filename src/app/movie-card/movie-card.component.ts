@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
 import { MatDialog } from "@angular/material/dialog";
 
 import { FetchApiDataService } from "../fetch-api-data.service";
@@ -15,7 +15,10 @@ import { DirectorModalComponent } from "../director-modal/director-modal.compone
 export class MovieCardComponent {
   movies: any[] = [];
 
-  constructor(public fetchApiDataService: FetchApiDataService, public dialog: MatDialog) {
+  constructor(
+    public fetchApiDataService: FetchApiDataService,
+    public dialog: MatDialog,
+    ) {
 
   }
 
@@ -34,21 +37,25 @@ export class MovieCardComponent {
     return this.fetchApiDataService.getImageLink(imageName);
   }
 
-  handleGenre(id: string): void {
+  handleGenre(movie: any): void {
     this.dialog.open(GenreModalComponent, {
-      width: '50%'
+      width: '50%',
+      data: movie,
     });
   }
 
-  handleDirector(id: string): void {
+  handleDirector(movie: any): void {
     this.dialog.open(DirectorModalComponent, {
-      width: '50%'
+      width: '50%',
+      data: movie,
     });
   }
 
-  handleSynopsis(id: string): void {
+  handleSynopsis(movie: any): void {
+    console.log("opening movie: ", movie);
     this.dialog.open(MovieModalComponent, {
-      width: '50%'
+      width: '50%',
+      data: movie,
     });
   }
 
