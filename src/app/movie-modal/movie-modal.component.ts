@@ -33,15 +33,6 @@ export class MovieModalComponent {
   }
 
   ngOnInit(): void {
-    this.getMovie(this.data.title);
-  }
-
-  public getMovie(movieTitle: string): void {
-    this.fetchApiDataService.getMovie(movieTitle).subscribe((res: any) => {
-      this.movie = res;
-      console.log(this.movie);
-      return this.movie;
-    })
   }
 
   public getImageLink(): string {
