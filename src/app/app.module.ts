@@ -23,6 +23,9 @@ import { MovieCardComponent } from "./movie-card/movie-card.component";
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 
 import { RouterModule, Routes } from '@angular/router';
+import { MovieModalComponent } from './movie-modal/movie-modal.component';
+import { GenreModalComponent } from './genre-modal/genre-modal.component';
+import { DirectorModalComponent } from './director-modal/director-modal.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
@@ -36,7 +39,10 @@ const appRoutes: Routes = [
     UserRegistrationFormComponent,
     UserLoginFormComponent,
     MovieCardComponent,
-    WelcomePageComponent
+    WelcomePageComponent,
+    MovieModalComponent,
+    GenreModalComponent,
+    DirectorModalComponent
   ],
   imports: [
     BrowserModule,

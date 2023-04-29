@@ -99,7 +99,6 @@ export class FetchApiDataService {
 
   // get an image
   public getImageLink(imageName: string) {
-    console.log('get Image: ', imageName);
     // return this.httpGet(`images/${imageName}`);
     return `${apiURL}images/${imageName}.jpg`
   }
