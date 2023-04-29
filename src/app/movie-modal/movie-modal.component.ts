@@ -20,12 +20,10 @@ export class MovieModalComponent {
       description: string;
       director: {
         name: string;
-
       };
       year: number;
       genre: {
         name: string;
-        description: string;
       };
     }
   ) {
