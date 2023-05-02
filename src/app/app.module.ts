@@ -26,6 +26,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MovieModalComponent } from './movie-modal/movie-modal.component';
 import { GenreModalComponent } from './genre-modal/genre-modal.component';
 import { DirectorModalComponent } from './director-modal/director-modal.component';
+import { NavHeaderComponent } from './nav-header/nav-header.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
@@ -42,7 +43,8 @@ const appRoutes: Routes = [
     WelcomePageComponent,
     MovieModalComponent,
     GenreModalComponent,
-    DirectorModalComponent
+    DirectorModalComponent,
+    NavHeaderComponent
   ],
   imports: [
     BrowserModule,

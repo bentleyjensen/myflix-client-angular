@@ -1,5 +1,7 @@
-<div style="display: flex;">
-    <mat-card *ngFor="let movie of movies;" style="flex: 1 1 auto; margin: 5px;">
+<nav-header></nav-header>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-evenly;">
+<!-- <div style="display: flex;"> -->
+    <mat-card *ngFor="let movie of movies;" style="flex: 1 1 auto; margin: 5px; max-width: 250px;">
         <mat-card-header>
             <mat-card-title (click)="handleSynopsis(movie)">
                 {{movie.title}}

@@ -1,0 +1,27 @@
+$colorPrimary: #3B4252;
+$colorSecondary: #81A1C1;
+$textColorLight: #D8DEE9;
+$textColorDark: #3B4252;
+
+.nav-header {
+    display: flex;
+    background-color: $colorPrimary;
+    color: $textColorLight;
+    // background-color: $colorSecondary;
+    // color: $textColorDark;
+    padding: 10px 0;
+    margin-bottom: 10px;
+}
+
+.nav-logo {
+    flex: 1;
+    justify-content: flex-start;
+}
+
+.nav-logo:hover {
+    filter: drop-shadow(0 0 8px $colorSecondary);
+}
+
+.nav-item {
+    margin: 10px;
+}
