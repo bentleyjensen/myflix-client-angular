@@ -85,6 +85,12 @@ export class FetchApiDataService {
     return this.httpGet(`movies/title/${movieTitle}`);
   }
 
+  // get Movie by ID
+  public getMovieById(movieId: string): Observable<any> {
+    console.log('get Movie: ', movieId);
+    return this.httpGet(`movies/id/${movieId}`);
+  }
+
   // get Director
   public getDirector(directorName: string): Observable<any> {
     console.log('get Director: ', directorName);

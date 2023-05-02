@@ -40,14 +40,14 @@ export class MovieCardComponent {
   handleGenre(movie: any): void {
     this.dialog.open(GenreModalComponent, {
       width: '50%',
-      data: movie,
+      data: movie.genre,
     });
   }
 
   handleDirector(movie: any): void {
     this.dialog.open(DirectorModalComponent, {
       width: '50%',
-      data: movie,
+      data: movie.director,
     });
   }
 
