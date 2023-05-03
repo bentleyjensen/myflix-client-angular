@@ -1,0 +1,18 @@
+$colorPrimary: #3B4252;
+$colorSecondary: #81A1C1;
+$textColorLight: #D8DEE9;
+$textColorDark: #3B4252;
+
+.flex-container {
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.login-card {
+    max-height: 500px;
+    max-width: 300px;
+    text-align: center;
+    background-color: $colorSecondary
+}

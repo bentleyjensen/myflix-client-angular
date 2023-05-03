@@ -1,70 +1,25 @@
-<mat-card>
-    <mat-card-header
-        style="margin: auto;"
-    >
-        <mat-card-title
-            style="text-align: center;margin-bottom: 10px;"
-        >User Sign Up</mat-card-title>
+<mat-card class="register-card flex-container">
+    <mat-card-header>
+        <mat-card-title><h2>User Sign Up</h2></mat-card-title>
     </mat-card-header>
-    <mat-card-content
-        style="margin: auto;"
-    >
-        <form
-            style="margin: auto;text-align: center;"
-        >
+    <mat-card-content>
+        <form>
             <mat-form-field>
-                <input
-                    matInput
-                    [(ngModel)]="userData.username"
-                    placeholder="Username"
-                    type="text"
-                    name="username"
-                    required
-                >
+                <input matInput [(ngModel)]="userData.username" placeholder="Username" type="text" name="username" required>
             </mat-form-field>
             <mat-form-field>
-                <input
-                    matInput
-                    [(ngModel)]="userData.password"
-                    type="password"
-                    placeholder="Password"
-                    name="password"
-                    required
-                >
+                <input matInput [(ngModel)]="userData.password" type="password" placeholder="Password" name="password" required>
             </mat-form-field>
             <mat-form-field>
-                <input
-                    matInput
-                    [(ngModel)]="userData.email"
-                    type="text"
-                    placeholder="Email"
-                    name="email"
-                    required
-                >
+                <input matInput [(ngModel)]="userData.email" type="text" placeholder="Email" name="email" required>
             </mat-form-field>
             <mat-form-field>
-                <input
-                    matInput
-                    [(ngModel)]="userData.birthdate"
-                    type="date"
-                    placeholder="Birthdate"
-                    name="birthdate"
-                >
+                <input matInput [(ngModel)]="userData.birthdate" type="date" placeholder="Birthdate" name="birthdate">
             </mat-form-field>
         </form>
     </mat-card-content>
-    <mat-card-actions
-        style="margin-left: auto;"
-    >
-        <div 
-            style="width: auto;"
-        ></div>
-        <button
-            mat-raised-button
-            (click)="registerUser()"
-            color="primary"
-            style="text-align: right;margin-right: auto;"
-        >
+    <mat-card-actions>
+        <button mat-raised-button (click)="registerUser()" color="primary">
             Sign Up
         </button>
     </mat-card-actions>

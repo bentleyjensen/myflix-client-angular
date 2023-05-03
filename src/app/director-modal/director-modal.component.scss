@@ -1,0 +1,22 @@
+$colorPrimary: #3B4252;
+$colorSecondary: #81A1C1;
+$textColorLight: #D8DEE9;
+$textColorDark: #3B4252;
+
+.flex-container {
+    height: 100%;
+    display: flex;
+}
+
+.director-header {
+    flex: 1 0 auto;
+    align-self: center;
+}
+
+.director-card {
+    background-color: $colorSecondary
+}
+
+.detail-item {
+    margin: 10px 0;
+}

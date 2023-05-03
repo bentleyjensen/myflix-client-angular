@@ -1,0 +1,24 @@
+$colorPrimary: #3B4252;
+$colorSecondary: #81A1C1;
+$textColorLight: #D8DEE9;
+$textColorDark: #2E3440;
+
+.nav-header {
+    display: flex;
+    background-color: $colorSecondary;
+    color: rgba(black, 0.87);
+    padding: 10px 0;
+}
+
+.nav-logo {
+    flex: 1;
+    justify-content: flex-start;
+}
+
+.nav-logo:hover {
+    filter: drop-shadow(0 0 8px $colorSecondary);
+}
+
+.nav-item {
+    margin: 10px;
+}
