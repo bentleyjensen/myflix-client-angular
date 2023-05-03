@@ -1,14 +1,12 @@
 $colorPrimary: #3B4252;
 $colorSecondary: #81A1C1;
 $textColorLight: #D8DEE9;
-$textColorDark: #3B4252;
+$textColorDark: #2E3440;
 
 .nav-header {
     display: flex;
-    background-color: $colorPrimary;
-    color: $textColorLight;
-    // background-color: $colorSecondary;
-    // color: $textColorDark;
+    background-color: $colorSecondary;
+    color: rgba(black, 0.87);
     padding: 10px 0;
 }
 

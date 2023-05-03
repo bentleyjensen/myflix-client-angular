@@ -7,7 +7,7 @@ $textColorDark: #3B4252;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    background-color: $colorSecondary;
+    background-color: $colorPrimary;
     padding-top: 10px;
 }
 
@@ -16,4 +16,5 @@ $textColorDark: #3B4252;
     margin: 5px;
     max-width: 250px;
     padding: 0 5px;
+    background-color: $colorSecondary;
 }
