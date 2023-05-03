@@ -1,0 +1,20 @@
+$colorPrimary: #3B4252;
+$colorSecondary: #81A1C1;
+$textColorLight: #D8DEE9;
+$textColorDark: #3B4252;
+
+.flex-container {
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.movie-card {
+    background-color: $colorSecondary
+}
+
+.left-image {
+    float: inline-start;
+    margin: 0px 15px;
+}
