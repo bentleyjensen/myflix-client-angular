@@ -1,22 +1,15 @@
-<div class="main-page"
-  style="text-align: center;"
->
-    <h1>
-        Welcome to myFlix!
-    </h1>
-    <button
-        mat-raised-button
-        color="primary"
-        (click)="openUserRegistrationDialog()"
-        class="aoeu"
-    >
-        Sign Up
-    </button>
-    <button
-        mat-raised-button
-        color="primary"
-        (click)="openUserLoginDialog()"
-    >
-        Login
-    </button>
+<div class="main flex-container">
+    <mat-card class="welcome-card">
+        <mat-card-header class="card-header flex-container">
+            <mat-card-title class="card-title"><h1>Welcome To MyFlix</h1></mat-card-title>
+        </mat-card-header>
+        <mat-card-actions class="card-actions flex-container">
+            <button mat-raised-button color="primary" class="action-button" (click)="openUserRegistrationDialog()">
+                Sign Up
+            </button>
+            <button mat-raised-button color="primary" class="action-button" (click)="openUserLoginDialog()">
+                Login
+            </button>
+        </mat-card-actions>
+    </mat-card>
 </div>
