@@ -17,7 +17,8 @@ export class NavHeaderComponent {
   }
 
   logout() {
-     
+    localStorage.removeItem('token');
+    this.router.navigate(['welcome']);
   }
 
 }
