@@ -27,10 +27,12 @@ import { MovieModalComponent } from './movie-modal/movie-modal.component';
 import { GenreModalComponent } from './genre-modal/genre-modal.component';
 import { DirectorModalComponent } from './director-modal/director-modal.component';
 import { NavHeaderComponent } from './nav-header/nav-header.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
   { path: 'movies', component: MovieCardComponent },
+  { path: 'profile', component: UserProfileComponent },
   { path: '', redirectTo: 'welcome', pathMatch: 'prefix' },
 ];
 
@@ -44,7 +46,8 @@ const appRoutes: Routes = [
     MovieModalComponent,
     GenreModalComponent,
     DirectorModalComponent,
-    NavHeaderComponent
+    NavHeaderComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,

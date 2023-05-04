@@ -3,6 +3,10 @@ $colorSecondary: #81A1C1;
 $textColorLight: #D8DEE9;
 $textColorDark: #2E3440;
 
+a {
+    text-decoration: none;
+    color: $textColorDark;
+}
 .nav-header {
     display: flex;
     background-color: $colorSecondary;

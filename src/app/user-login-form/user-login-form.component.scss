@@ -7,12 +7,19 @@ $textColorDark: #3B4252;
     height: 100%;
     display: flex;
     justify-content: space-around;
-    align-items: center;
+    // flex-wrap: wrap;
 }
 
-.login-card {
-    max-height: 500px;
-    max-width: 300px;
-    text-align: center;
+.main {
     background-color: $colorSecondary
+}
+
+.login-actions {
+    justify-content: flex-end;
+    margin-right: 16px;
+    padding: 0;
+}
+
+.wide {
+    width: 100%;
 }

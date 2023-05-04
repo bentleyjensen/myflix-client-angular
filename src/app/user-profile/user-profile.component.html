@@ -1,0 +1,54 @@
+<nav-header></nav-header>
+<div class="main flex-container">
+    <div class="movie-list">
+        <mat-card class="card favorites">
+            <mat-card-header>
+                <mat-card-title>
+                    <h2>Your Favorite Movies</h2>
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <ul>
+                    <div *ngFor="let movie of userDetails.favorites">
+                        <li>
+                            {{movie.title}}
+                            <button mat-button color="primary" class="delete-button" (click)="deleteFavorite()">
+                                <mat-icon>delete_forever</mat-icon>
+                            </button>
+                        </li>
+                    </div>
+                </ul>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="user-details">
+        <mat-card class="card user-details">
+            <mat-card-header>
+                <mat-card-title>
+                    <h2>Your Details</h2>
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <form>
+                    <mat-form-field>
+                        <input mat-input [(ngModel)]="userDetails.username" class="detail-input" value="{{userDetails.username}}" name="username" type="text" placeholder="Username"/>
+                        <input mat-input [(ngModel)]="userDetails.email" class="detail-input" value="{{userDetails.email}}" name="email" type="text" placeholder="Email"/>
+                        <input mat-input [(ngModel)]="userDetails.birthdate" class="detail-input" value="{{userDetails.birthdate}}" name="birthdate" type="text" placeholder="Birthdate"/>
+                        <input mat-input [(ngModel)]="userDetails.password" class="detail-input" value="aoeu" name="password" type="password" placeholder="New Password"/>
+                        <input mat-input [(ngModel)]="userDetails.confirmPassword" class="detail-input" value="" name="confirmPassword" type="password" placeholder="Confirm New Password"/>
+                    </mat-form-field>
+                </form>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button color="primary" (click)="updateUser()">
+                    <mat-icon>update</mat-icon>
+                    Update My Details
+                </button>
+                <button mat-raised-button color="warn" (click)="deleteUser()">
+                    <mat-icon>delete_forever</mat-icon>
+                    Delete my Account
+                </button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>
