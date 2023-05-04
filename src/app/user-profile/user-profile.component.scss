@@ -1,0 +1,54 @@
+$colorPrimary: #3B4252;
+$colorSecondary: #81A1C1;
+$textColorLight: #D8DEE9;
+$textColorDark: #3B4252;
+
+ul {
+    padding: 0px;
+}
+
+li {
+    display: inline-block;
+    width: 100%;
+    margin: 10px 0;
+}
+
+button {
+    margin: 0 10px;
+}
+
+form 
+mat-form-field{
+    width: 100%;
+}
+
+input {
+    margin: 10px 0;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    height: 100%;
+}
+
+.main {
+    background-color: $colorPrimary;
+    flex-grow: 1;
+    width: 100%;
+    display: flex;
+    padding: 20px;
+}
+
+.card {
+    padding: 10px;
+    background-color: $colorSecondary;
+}
+
+.delete-button {
+    margin: 0;
+    float: inline-end;
+    justify-content: flex-end;
+    height: auto;
+}
