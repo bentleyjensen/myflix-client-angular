@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from "@angular/router";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { FetchApiDataService } from "../fetch-api-data.service";
 
@@ -29,10 +30,16 @@ export class UserProfileComponent implements OnInit{
   constructor (
     public fetchApiDataService: FetchApiDataService,
     public snackBar: MatSnackBar,
+    public router: Router,
   ){}
 
   ngOnInit(): void {
-    this.fetchUser();
+    const token = localStorage.getItem('token');
+    if (!token) {
+      this.router.navigate(['/'])
+    } else {
+      this.fetchUser();
+    }
   }
 
   public fetchUser(): void{
