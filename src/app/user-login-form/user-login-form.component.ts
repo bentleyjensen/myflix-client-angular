@@ -31,10 +31,19 @@ export class UserLoginFormComponent implements OnInit {
     this.fetchApiData.userLogin(this.loginData).subscribe(result => {
       // Close dialog on success
       this.dialogRef.close();
-      this.snackBar.open(result, 'OK', {
-        duration: 5000
-      });
-      this.router.navigate(['movies']);
+
+      // A true success is a JWT in the response
+      if (result && result.token) {
+        // Store the JWT
+        localStorage.setItem('token', result.token);
+
+        // Notify the user
+        this.snackBar.open('Success!', 'OK', {
+          duration: 2000
+        });
+        // Send them to the movies
+        this.router.navigate(['movies']);
+      }
     }, (result) => {
       this.snackBar.open(result, 'OK', {
         duration: 5000

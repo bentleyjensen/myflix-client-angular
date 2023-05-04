@@ -30,8 +30,7 @@ export class FetchApiDataService {
   // Login an existing user
   public userLogin(userDetails: any): Observable<any> {
     // Non-auth POST request
-    return this.http.post(apiURL + 'login', userDetails)
-      .pipe(catchError(this.handleError));
+    return this.httpPost('login', userDetails);
   }
 
   // get User
@@ -75,37 +74,31 @@ export class FetchApiDataService {
 
   // get Movies (plural)
   public getMovies(): Observable<any> {
-    console.log('get Movies');
     return this.httpGet('movies');
   }
 
   // get Movie (singular)
   public getMovie(movieTitle: string): Observable<any> {
-    console.log('get Movie: ', movieTitle);
     return this.httpGet(`movies/title/${movieTitle}`);
   }
 
   // get Movie by ID
   public getMovieById(movieId: string): Observable<any> {
-    console.log('get Movie: ', movieId);
     return this.httpGet(`movies/id/${movieId}`);
   }
 
   // get Director
   public getDirector(directorName: string): Observable<any> {
-    console.log('get Director: ', directorName);
     return this.httpGet(`directors/${directorName}`);
   }
 
   // get Genre
   public getGenre(genre: string): Observable<any> {
-    console.log('get Genre: ', genre);
     return this.httpGet(`movies/genre/${genre}`);
   }
 
   // get an image
   public getImageLink(imageName: string) {
-    // return this.httpGet(`images/${imageName}`);
     return `${apiURL}images/${imageName}.jpg`
   }
 
@@ -116,6 +109,16 @@ export class FetchApiDataService {
       .pipe(
         map(this.extractResponseData),
         catchError(this.handleError));
+  }
+
+  // Generic POST request without auth
+  // returns response data
+  private httpPost(endpoint: string, body: any): any {
+    return this.http.post(apiURL + endpoint, body)
+      .pipe(
+        map(this.extractResponseData),
+        catchError(this.handleError));
+
   }
 
   // Generic get request that tries to set the Authorization: Bearer header
@@ -179,22 +182,35 @@ export class FetchApiDataService {
 
   // General Error Handler
   private handleError(error: HttpErrorResponse): any {
-    // There are (unfortunately) several different error objects passed,
-    // and we have to locate the message differently for each.
-    let errorMsg: string;
+    let errorMsg: string = 'Default Error Message: Something bad happened. Try again later.';
 
-    if (error.error) {
-      if (error.error.info?.message) {
-        errorMsg = error.error.info.message;
-
-      } else if (typeof error.error == 'string') {
-        errorMsg = error.error;
-
-      } else if (Array.isArray(error.error.errors)) {
-        errorMsg = error.error.errors[0].msg
-      }
+    if (error.error && typeof error.error == 'string') {
+      errorMsg = error.error;
+    // } else if (error.error.hasOwnProperty('message')) {
+    //   errorMsg = error.error.message;
+    } else if (error.error.hasOwnProperty('error') && error.error.error.hasOwnProperty('message')) {
+      errorMsg = error.error.error.message;
     }
-
-    return throwError(() => new Error(errorMsg ));
+    return throwError(errorMsg);
   }
+
+  // private handleError(error: HttpErrorResponse): any {
+  //   // There are (unfortunately) several different error objects passed,
+  //   // and we have to locate the message differently for each.
+  //   let errorMsg: string;
+
+  //   if (error.error) {
+  //     if (error.error.info?.message) {
+  //       errorMsg = error.error.info.message;
+
+  //     } else if (typeof error.error == 'string') {
+  //       errorMsg = error.error;
+
+  //     } else if (Array.isArray(error.error.errors)) {
+  //       errorMsg = error.error.errors[0].msg
+  //     }
+  //   }
+
+  //   return throwError(() => new Error(errorMsg ));
+  // }
 }

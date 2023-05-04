@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, Inject } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from "@angular/router";
 import { MatDialog } from "@angular/material/dialog";
 
 import { FetchApiDataService } from "../fetch-api-data.service";
@@ -18,12 +19,18 @@ export class MovieCardComponent {
   constructor(
     public fetchApiDataService: FetchApiDataService,
     public dialog: MatDialog,
+    public router: Router,
     ) {
 
   }
 
   ngOnInit(): void {
-    this.getMovies();
+    const token = localStorage.getItem('token');
+    if (!token) {
+      this.router.navigate(['/'])
+    } else {
+      this.getMovies();
+    }
   }
 
   getMovies(): void {
