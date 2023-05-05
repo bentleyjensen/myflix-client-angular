@@ -20,6 +20,7 @@ button {
 form 
 mat-form-field{
     width: 100%;
+    display: block;
 }
 
 input {
@@ -51,4 +52,8 @@ input {
     float: inline-end;
     justify-content: flex-end;
     height: auto;
+}
+
+.wide {
+    width: 100%;
 }

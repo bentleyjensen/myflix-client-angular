@@ -9,12 +9,16 @@
             </mat-card-header>
             <mat-card-content>
                 <ul>
-                    <div *ngFor="let movie of userDetails.favorites">
+                    <div *ngIf="!hasFavorites">
+                        <li>You don't have any favorites!</li>
+                    </div>
+                    <div *ngFor="let movie of favorites; trackBy: movieTrackBy">
                         <li>
                             {{movie.title}}
-                            <button mat-button color="primary" class="delete-button" (click)="deleteFavorite()">
+                            <!-- TODO: get delete to work: currently experiencing a render issue on delete -->
+                            <!-- <button mat-button color="primary" class="delete-button" (click)="deleteFavorite(movie._id)">
                                 <mat-icon>delete_forever</mat-icon>
-                            </button>
+                            </button> -->
                         </li>
                     </div>
                 </ul>
@@ -31,11 +35,19 @@
             <mat-card-content>
                 <form>
                     <mat-form-field>
-                        <input mat-input [(ngModel)]="userDetails.username" class="detail-input" value="{{userDetails.username}}" name="username" type="text" placeholder="Username"/>
-                        <input mat-input [(ngModel)]="userDetails.email" class="detail-input" value="{{userDetails.email}}" name="email" type="text" placeholder="Email"/>
-                        <input mat-input [(ngModel)]="userDetails.birthdate" class="detail-input" value="{{userDetails.birthdate}}" name="birthdate" type="text" placeholder="Birthdate"/>
-                        <input mat-input [(ngModel)]="userDetails.password" class="detail-input" value="aoeu" name="password" type="password" placeholder="New Password"/>
-                        <input mat-input [(ngModel)]="userDetails.confirmPassword" class="detail-input" value="" name="confirmPassword" type="password" placeholder="Confirm New Password"/>
+                        <input matInput [(ngModel)]="userDetails.username" class="detail-input wide" value="{{userDetails.username}}" name="username" type="text" placeholder="Username"/>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput [(ngModel)]="userDetails.email" class="detail-input wide" value="{{userDetails.email}}" name="email" type="text" placeholder="Email"/>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput [(ngModel)]="userDetails.birthdate" class="detail-input wide" value="{{userDetails.birthdate}}" name="birthdate" type="text" placeholder="Birthdate"/>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput [(ngModel)]="userDetails.password" class="detail-input wide" value="" name="password" type="password" placeholder="New Password"/>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput [(ngModel)]="userDetails.confirmPassword" class="detail-input wide" value="" name="confirmPassword" type="password" placeholder="Confirm New Password"/>
                     </mat-form-field>
                 </form>
             </mat-card-content>
