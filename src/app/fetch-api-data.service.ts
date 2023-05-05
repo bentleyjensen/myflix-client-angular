@@ -5,7 +5,8 @@ import { Observable, throwError } from 'rxjs';
 
 // Url providing data for the app
 // Url should end in slash
-const apiURL = 'http://localhost:8000/';
+// const apiURL = 'http://localhost:8000/';
+const apiURL = 'https://shrouded-fortress-53636.herokuapp.com/';
 
 // Importable under root scope
 @Injectable({
