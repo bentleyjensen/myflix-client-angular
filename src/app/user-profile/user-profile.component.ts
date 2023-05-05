@@ -27,6 +27,9 @@ export class UserProfileComponent implements OnInit{
     favorites: [],
   }
 
+  favorites: any[] = [];
+  hasFavorites = false;
+
   constructor (
     public fetchApiDataService: FetchApiDataService,
     public snackBar: MatSnackBar,
@@ -42,39 +45,61 @@ export class UserProfileComponent implements OnInit{
     }
   }
 
-  public fetchUser(): void{
-    const myUser: User = {
-      username: 'Bentimus',
-      email: 'bentimus@maximus.com',
-      birthdate: '1996-07-19',
-      password: '',
-      confirmPassword: '',
-      favorites: [
-        {
-          _id: '6293196ff04c1332bdae9494',
-          title: 'Inception',
-        },{
-          _id: '6293196ff04c1332bdae9495',
-          title: 'Batman Begins',
-        },{
-          _id: '6293196ff04c1332bdae9493',
-          title: 'Interstellar',
-        },
-      ],
-    }
-
-    this.userDetails = myUser;
+  public movieTrackBy(index: number, movie: any): string {
+    return movie.id;
   }
 
-  public deleteFavorite(): void {
+  public fetchUser(): void{
+    this.fetchApiDataService.getUser().subscribe((res: any) => {
+      // res.birthdate = res.split('T')[0];
+      this.userDetails = res;
+      this.favorites = res.favorites;
+      this.hasFavorites = this.favorites.length > 0;
+      this.userDetails.birthdate = this.userDetails.birthdate.toString().split('T')[0];
+      return this.userDetails;
+    });
+  }
 
+  public deleteFavorite(id: string): void {
+    console.log('delete favorite: ', id);
+    this.fetchApiDataService.deleteFavorite(id).subscribe((res: any) => {
+      // res is a full user object
+      this.userDetails.favorites = res.favorites;
+      this.favorites = res.favorites;
+      this.hasFavorites = this.favorites.length > 0;
+    });
+    return;
   }
 
   public updateUser(): void {
+    if (this.userDetails.password !== this.userDetails.confirmPassword) {
+      this.snackBar.open('Passwords must match', 'OK', {
+        duration: 5000
+      });
+    }
+    console.log('User to be updated: ', this.userDetails);
+    this.fetchApiDataService.editUser(this.userDetails).subscribe((res: any) => {
+      console.log(res);
+      if(res.error) {
+        this.snackBar.open(res.error.message, 'OK', {
+          duration: 5000
+        });
+      } else {
+        this.snackBar.open('Success!', 'OK', {
+          duration: 2000
+        });
+      }
 
+    });
   }
 
   public deleteUser(): void {
-
+    this.fetchApiDataService.deleteUser(this.userDetails).subscribe((res: any) => {
+      this.snackBar.open('Success!', 'OK', {
+        duration: 5000
+      });
+      localStorage.removeItem('token');
+      this.router.navigate(['/']);
+    });
   }
 }

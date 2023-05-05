@@ -60,14 +60,14 @@ export class FetchApiDataService {
   }
 
   // post Favorites
-  public postFavorites(favoriteId: string): Observable<any> {
+  public postFavorite(favoriteId: string): Observable<any> {
     console.log('post Favorites: ', favoriteId);
     // The server does not expect a body for this request.
     return this.httpAuthPost(`user/favorite/${favoriteId}`, {});
   }
 
   // delete Favorites
-  public deleteFavorites(favoriteId: string): Observable<any> {
+  public deleteFavorite(favoriteId: string): Observable<any> {
     console.log('del Favorites: ', favoriteId);
     return this.httpAuthDelete(`user/favorite/${favoriteId}`, favoriteId);
   }
@@ -142,7 +142,7 @@ export class FetchApiDataService {
   private httpAuthPut(endpoint: string, body: any): any {
     const headers = this.getHeaders();
 
-    return this.http.post(apiURL + endpoint, body, { headers })
+    return this.http.put(apiURL + endpoint, body, { headers })
       .pipe(catchError(this.handleError));
 
   }
@@ -181,8 +181,9 @@ export class FetchApiDataService {
   }
 
   // General Error Handler
-  private handleError(error: HttpErrorResponse): any {
-    let errorMsg: string = 'Default Error Message: Something bad happened. Try again later.';
+  private handleError(error: any): any {
+    let defaultErrorMsg: string = 'Default Error Message: Something bad happened. Try again later.';
+    let errorMsg: string = defaultErrorMsg;
 
     if (error.error && typeof error.error == 'string') {
       errorMsg = error.error;
@@ -190,6 +191,12 @@ export class FetchApiDataService {
     //   errorMsg = error.error.message;
     } else if (error.error.hasOwnProperty('error') && error.error.error.hasOwnProperty('message')) {
       errorMsg = error.error.error.message;
+    } else if (error.errors && Array.isArray(error.errors)) {
+      errorMsg = error.errors;
+    }
+
+    if (errorMsg === defaultErrorMsg) {
+      console.log(error);
     }
     return throwError(errorMsg);
   }
