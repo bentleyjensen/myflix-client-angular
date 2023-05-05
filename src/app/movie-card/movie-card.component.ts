@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from "@angular/router";
 import { MatDialog } from "@angular/material/dialog";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 import { FetchApiDataService } from "../fetch-api-data.service";
 
@@ -15,11 +16,13 @@ import { DirectorModalComponent } from "../director-modal/director-modal.compone
 })
 export class MovieCardComponent {
   movies: any[] = [];
+  favorites: string[] = [];
 
   constructor(
     public fetchApiDataService: FetchApiDataService,
     public dialog: MatDialog,
     public router: Router,
+    public snackBar: MatSnackBar,
     ) {
 
   }
@@ -30,6 +33,7 @@ export class MovieCardComponent {
       this.router.navigate(['/'])
     } else {
       this.getMovies();
+      this.getFavorites();
     }
   }
 
@@ -37,6 +41,14 @@ export class MovieCardComponent {
     this.fetchApiDataService.getMovies().subscribe((res: any) => {
       this.movies = res;
       return this.movies;
+    });
+  }
+
+  getFavorites(): void {
+    this.fetchApiDataService.getUser().subscribe((res: any) => {
+      res.favorites.forEach((movie: any) => {
+        this.favorites.push(movie._id);
+      });
     });
   }
 
@@ -67,7 +79,30 @@ export class MovieCardComponent {
   }
 
   toggleFavorite(id: string): void {
+    if (this.favorites.includes(id)) {
+      this.removeFavorite(id);
+    } else {
+      this.addFavorite(id);
+    }
+  }
 
+  removeFavorite(id: string): void {
+    this.fetchApiDataService.deleteFavorite(id).subscribe((res) => {
+      const idIdx = this.favorites.indexOf(id);
+      this.favorites.splice(idIdx, 1);
+      this.snackBar.open('Removed Favorite', 'OK', {
+        duration: 3000
+      });
+    });
+  }
+
+  addFavorite(id: string): void {
+    this.fetchApiDataService.postFavorite(id).subscribe((res) => {
+      this.favorites.push(id);
+      this.snackBar.open('Added Favorite', 'OK', {
+        duration: 3000
+      });
+    });
   }
 
 }

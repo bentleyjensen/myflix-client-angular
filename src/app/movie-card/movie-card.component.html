@@ -22,7 +22,9 @@
             <button mat-button color="primary" (click)="handleSynopsis(movie)">
                 Synopsis
             </button>
-            <mat-icon>favorite_border</mat-icon>
+            <button mat-icon-button (click)="toggleFavorite(movie._id)">
+                <mat-icon>{{favorites.includes(movie._id) ? 'favorite' : 'favorite_border'}}</mat-icon>
+            </button>
         </mat-card-actions>
     </mat-card>
 </div>
