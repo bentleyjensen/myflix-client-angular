@@ -37,6 +37,9 @@ export class MovieCardComponent {
     }
   }
 
+  /**
+   * Pull all the movies from the database and set the state
+   */
   getMovies(): void {
     this.fetchApiDataService.getMovies().subscribe((res: any) => {
       this.movies = res;
@@ -44,6 +47,9 @@ export class MovieCardComponent {
     });
   }
 
+  /**
+   * Pull the users data, and create an array of favorites containing movie titles.
+   */
   getFavorites(): void {
     this.fetchApiDataService.getUser().subscribe((res: any) => {
       res.favorites.forEach((movie: any) => {
@@ -52,10 +58,19 @@ export class MovieCardComponent {
     });
   }
 
+  /**
+   * Get the correct server link for the movie posters from the data service
+   * @param imageName name of the image to get the link for
+   * @returns an href for the image
+   */
   getImageLink(imageName: string): string {
     return this.fetchApiDataService.getImageLink(imageName);
   }
 
+  /**
+   * Open a modal with genre information
+   * @param movie a movie object
+   */
   handleGenre(movie: any): void {
     this.dialog.open(GenreModalComponent, {
       width: '50%',
@@ -63,6 +78,10 @@ export class MovieCardComponent {
     });
   }
 
+  /**
+   * Open a modal with director information
+   * @param movie a movie object
+   */
   handleDirector(movie: any): void {
     this.dialog.open(DirectorModalComponent, {
       width: '50%',
@@ -70,6 +89,10 @@ export class MovieCardComponent {
     });
   }
 
+  /**
+   * Open a modal with more movie information
+   * @param movie a movie object
+   */
   handleSynopsis(movie: any): void {
     console.log("opening movie: ", movie);
     this.dialog.open(MovieModalComponent, {
@@ -78,6 +101,10 @@ export class MovieCardComponent {
     });
   }
 
+  /**
+   * Add or remove a movie from a user's favorites list
+   * @param id id of the movie to toggle
+   */
   toggleFavorite(id: string): void {
     if (this.favorites.includes(id)) {
       this.removeFavorite(id);
@@ -86,6 +113,10 @@ export class MovieCardComponent {
     }
   }
 
+  /**
+   * Remove a movie from the user's favorites
+   * @param id id of the movie to remove
+   */
   removeFavorite(id: string): void {
     this.fetchApiDataService.deleteFavorite(id).subscribe((res) => {
       const idIdx = this.favorites.indexOf(id);
@@ -96,6 +127,10 @@ export class MovieCardComponent {
     });
   }
 
+  /**
+   * Add a movie to the user's favorites
+   * @param id id of the movie to add
+   */
   addFavorite(id: string): void {
     this.fetchApiDataService.postFavorite(id).subscribe((res) => {
       this.favorites.push(id);

@@ -29,5 +29,35 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
+  },
+  "typedocOptions": {
+    "entryPoints": [
+      "src/app/app-routing.module.ts",
+      "src/app/app.component.spec.ts",
+      "src/app/app.component.ts",
+      "src/app/app.module.ts",
+      "src/app/director-modal/director-modal.component.spec.ts",
+      "src/app/director-modal/director-modal.component.ts",
+      "src/app/fetch-api-data.service.spec.ts",
+      "src/app/fetch-api-data.service.ts",
+      "src/app/genre-modal/genre-modal.component.spec.ts",
+      "src/app/genre-modal/genre-modal.component.ts",
+      "src/app/movie-card/movie-card.component.spec.ts",
+      "src/app/movie-card/movie-card.component.ts",
+      "src/app/movie-modal/movie-modal.component.spec.ts",
+      "src/app/movie-modal/movie-modal.component.ts",
+      "src/app/nav-header/nav-header.component.spec.ts",
+      "src/app/nav-header/nav-header.component.ts",
+      "src/app/user-login-form/user-login-form.component.spec.ts",
+      "src/app/user-login-form/user-login-form.component.ts",
+      "src/app/user-profile/user-profile.component.spec.ts",
+      "src/app/user-profile/user-profile.component.ts",
+      "src/app/user-registration-form/user-registration-form.component.spec.ts",
+      "src/app/user-registration-form/user-registration-form.component.ts",
+      "src/app/welcome-page/welcome-page.component.spec.ts",
+      "src/app/welcome-page/welcome-page.component.ts",
+      "src/main.ts"
+    ],
+    "out": "docs"
   }
 }

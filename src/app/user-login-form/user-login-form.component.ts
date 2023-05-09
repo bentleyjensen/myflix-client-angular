@@ -26,7 +26,9 @@ export class UserLoginFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // This function is responsible for sending the data to the server
+  /**
+   * Send data to the server to perform the login. Save the JWT.
+   */
   loginUser(): void {
     this.fetchApiData.userLogin(this.loginData).subscribe(result => {
       // Close dialog on success

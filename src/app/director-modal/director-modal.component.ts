@@ -29,6 +29,9 @@ export class DirectorModalComponent {
     this.setBirthdate();
   }
 
+  /**
+   * Set the date to a string in the correct format (mm/dd/yyyy)
+   */
   private setBirthdate(): void {
     let tmpDate: Date;
 
@@ -43,6 +46,9 @@ export class DirectorModalComponent {
     this.data.birthdate = tmpDate.toLocaleDateString();
   }
 
+  /**
+   * Take the full movie objects passed in, and create an array of just their titles
+   */
   private populateMovies(): void {
     const tmpMovies: string[] = [];
     this.data.movies.forEach((movieId) => {

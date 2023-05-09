@@ -33,6 +33,11 @@ export class MovieModalComponent {
   ngOnInit(): void {
   }
 
+  /**
+   * Get the correct server link for the movie posters from the data service
+   * @param imageName name of the image to get the link for
+   * @returns an href for the image
+   */
   public getImageLink(): string {
     return this.fetchApiDataService.getImageLink(this.data._id);
   }

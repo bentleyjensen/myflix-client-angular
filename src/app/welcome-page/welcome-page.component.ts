@@ -23,11 +23,19 @@ export class WelcomePageComponent implements OnInit {
       this.router.navigate(['movies']);
     }
   }
+
+  /**
+   * Open the dialog containing new user sign up
+   */
   openUserRegistrationDialog(): void {
     this.dialog.open(UserRegistrationFormComponent, {
       width: '280px'
     });
   }
+
+  /**
+   * Open the dialog for user login
+   */
   openUserLoginDialog(): void {
     this.dialog.open(UserLoginFormComponent, {
       width: '280px'

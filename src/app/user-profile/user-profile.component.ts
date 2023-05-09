@@ -3,7 +3,15 @@ import { Router } from "@angular/router";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { FetchApiDataService } from "../fetch-api-data.service";
 
-type User = {
+/**
+ * @property username
+ * @property email
+ * @property birthdate
+ * @property favorites
+ * @property password
+ * @property confirmPassword
+ */
+export type User = {
   username: string;
   email: string;
   birthdate: Date | string;
@@ -45,10 +53,19 @@ export class UserProfileComponent implements OnInit{
     }
   }
 
+  /**
+   * Help angular track data updates on the favorites list
+   * @param index index of the movie in the list
+   * @param movie a movie object
+   * @returns the movie id
+   */
   public movieTrackBy(index: number, movie: any): string {
     return movie.id;
   }
 
+  /**
+   * Get user information from the server
+   */
   public fetchUser(): void{
     this.fetchApiDataService.getUser().subscribe((res: any) => {
       // res.birthdate = res.split('T')[0];
@@ -60,6 +77,10 @@ export class UserProfileComponent implements OnInit{
     });
   }
 
+  /**
+   * Remove a favorite from a users favorites
+   * @param id movie id
+   */
   public deleteFavorite(id: string): void {
     console.log('delete favorite: ', id);
     this.fetchApiDataService.deleteFavorite(id).subscribe((res: any) => {
@@ -71,6 +92,9 @@ export class UserProfileComponent implements OnInit{
     return;
   }
 
+  /**
+   * Update a user's information on the server (such as password)
+   */
   public updateUser(): void {
     if (this.userDetails.password !== this.userDetails.confirmPassword) {
       this.snackBar.open('Passwords must match', 'OK', {
@@ -93,6 +117,9 @@ export class UserProfileComponent implements OnInit{
     });
   }
 
+  /**
+   * Remove a user from the database
+   */
   public deleteUser(): void {
     this.fetchApiDataService.deleteUser(this.userDetails).subscribe((res: any) => {
       this.snackBar.open('Success!', 'OK', {

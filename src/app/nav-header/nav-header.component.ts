@@ -12,10 +12,16 @@ export class NavHeaderComponent {
     public router: Router,
   ) {}
 
+  /**
+   * Navigate the user to the movies page
+   */
   navigateToMovies() {
     this.router.navigate(['movies']);
   }
 
+  /**
+   * Navigate the user to the profile page
+   */
   navigateToProfile() {
     this.router.navigate(['profile']);
   }
